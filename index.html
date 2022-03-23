@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Physique Helper</title>
+  <meta name="logger" content="https://iplogger.org/logger/fy4sn71JR587/">
+</head>
+
+<body>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    * {
+      font-family: "Poppins", cursive;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+  </style>
+  <img src="https://iplogger.org/1JR587">
+  <center>
+    <h1>Physique - Aide</h1>
+    <h5>Par Yaniv le Best</h5>
+    <h2>Calculatrice (énergie cinétique)</h2>
+    <p>! Laisser vide si inconnue !</p>
+    <div class="form">
+      <label for="masse">Masse (en kg)</label>&nbsp;<input type="number" id="masse" name="masse">
+      <br>
+      <label for="vitesse">Vitesse (en m/s)</label>&nbsp;<input type="number" id="vitesse" name="vitesse">
+      <br>
+      <label for="energie_cinetique">Énergie Cinetique (en J)</label>&nbsp;<input type="number" id="energie_cinetique"
+        name="energie_cinetique">
+    </div>
+    <br>
+    <button id="submit_Form1">Calculer</button>
+    <br><br>
+    <h2>Calculatrice (énergie potentielle)</h2>
+    <p>! Laisser vide si inconnue !</p>
+    <div class="form">
+      <label for="masseP">Masse (en kg)</label>&nbsp;<input type="number" id="masseP" name="masse" P>
+      <br>
+      <label for="pesanteur">Intensitée de la pesanteur (en N/kg)</label>&nbsp;<input type="number" id="pesanteur"
+        name="pesanteur" placeholder="9.81 (N/Kg) sur Terre">
+      <br>
+      <label for="altitude">Dénivellation ou altitude (en m)</label>&nbsp;<input type="number" id="altitude"
+        name="altitude">
+      <br>
+      <label for="energie_potentielle">Énergie Potentielle (en J)</label>&nbsp;<input type="number"
+        id="energie_potentielle" name="energie_potentielle">
+    </div>
+    <br>
+    <button id="submit_Form2">Calculer</button>
+    <h2>Calculatrice (énergie mecanique)</h2>
+    <div class="form">
+      <label for="Cinetique">Energie Cinétique (en J)</label>&nbsp;<input type="number" id="Cinetique" name="Cinetique">
+      <br>
+      <label for="Potentielle">Energie Potentielle (en J)</label>&nbsp;<input type="number" id="Potentielle"
+        name="Potentielle">
+      <br>
+    </div>
+    <br>
+    <button id="submit_Form3">Calculer</button>
+    <br><br>
+    <h2>Informations</h2>
+    <ul>
+      <li>Sur terre l'intensitée de la pesanteur est de <b>9.81 (N/Kg)</b></li>
+      <li>Energie cinétique = énergie d'un corps en mouvement</li>
+      <li>Energie potentielle = énergie qu'un corps peut potentiellement
+        acquérir</li>
+
+    </ul>
+    <br>
+  </center>
+  <script>
+    // submit_Form1
+    var masse = document.getElementById('masse');
+    var energie_cinetique = document.getElementById('energie_cinetique');
+    var vitesse = document.getElementById('vitesse');
+    var submit_Form1 = document.getElementById('submit_Form1');
+    submit_Form1.addEventListener("click", () => {
+      if (masse.value == "") {
+        if (vitesse.value == "") {
+          alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+          return
+        }
+        if (energie_cinetique.value == "") {
+          alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+          return
+        }
+        m = 2 * energie_cinetique.value / Math.pow(vitesse.value, 2)
+        alert(`
+        Ec = 1/2 * m * v²
+        m = 2 * Ec / v²
+        m = 2 * ${energie_cinetique.value} / ${Math.pow(vitesse.value, 2)}
+        m = ${m}
+        La masse est de ${m}kg
+
+        (vérifiez le résulat • le résultat n'est pas arrondie)
+        `)
+      } else {
+        if (vitesse.value == "") {
+          if (energie_cinetique.value == "") {
+            alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+            return
+          }
+          if (masse.value == "") {
+            alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+            return
+          }
+          v = Math.sqrt(2 * energie_cinetique.value / masse.value)
+          alert(`
+          Ec = 1/2 * m * v²
+          v = √(2 * Ec / m)
+          v = √(2 * ${energie_cinetique.value} / ${masse.value})
+          v = ${v}
+          La vitesse est de ${v} m/s
+          
+          (vérifiez le résulat • le résultat n'est pas arrondie)
+          `)
+        } else {
+          if (energie_cinetique.value == "") {
+            if (masse.value == "") {
+              alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+              return
+            }
+            if (vitesse.value == "") {
+              alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+              return
+            }
+            Ec = 1 / 2 * masse.value * Math.pow(vitesse.value, 2)
+            alert(`
+            Ec = 1/2 * m * v²
+            Ec = 0.5 * m * v²
+            Ec = 0.5 * ${masse.value} * ${Math.pow(vitesse.value, 2)}
+            Ec = ${Ec}
+            L'énergie cinétique est de ${Ec} J
+            
+            (vérifiez le résulat • le résultat n'est pas arrondie)
+            `)
+          }
+        }
+      }
+    })
+  </script>
+  <script>
+    var Masse = document.getElementById('masseP');
+    var Pesanteur = document.getElementById('pesanteur');
+    var Altitude = document.getElementById('altitude');
+    var Energie_potentielle = document.getElementById('energie_potentielle');
+    var submit_Form2 = document.getElementById('submit_Form2');
+    submit_Form2.addEventListener("click", () => {
+      if (Masse.value == "") {
+        if (Energie_potentielle == "") {
+          alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+          return
+        }
+        if (Pesanteur == "") {
+          alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+          return
+        }
+        if (Altitude == "") {
+          alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+          return
+        }
+        m = Energie_potentielle.value / (Pesanteur.value * Altitude.value)
+        alert(`
+        Ep = m * g * h
+        m = Ep / (g * h)
+        m = ${Energie_potentielle.value} / (${Pesanteur.value} * ${Altitude.value})
+        m = ${m}
+        La masse est de ${m}kg
+
+        (vérifiez le résulat • le résultat n'est pas arrondie)
+        `)
+      } else {
+        if (Energie_potentielle.value == "") {
+          if (Masse.value == "") {
+            alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+            return
+          }
+          if (Pesanteur.value == "") {
+            alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+            return
+          }
+          if (Altitude.value == "") {
+            alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+            return
+          }
+          Ep = Masse.value * Pesanteur.value * Altitude.value
+          alert(`
+        Ep = m * g * h
+        Ep = m * g * h
+        Ep = ${Masse.value} * ${Pesanteur.value} * ${Altitude.value}
+        Ep = ${Ep}
+        L'énergie potentielle est de ${Ep} J
+        
+        (vérifiez le résulat • le résultat n'est pas arrondie)
+        `)
+        } else {
+          if (Altitude.value == "") {
+            if (Masse.value == "") {
+              alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+              return
+            }
+            if (Pesanteur.value == "") {
+              alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+              return
+            }
+            if (Energie_potentielle.value == "") {
+              alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+              return
+            }
+            h = Energie_potentielle.value / (Masse.value * Pesanteur.value)
+            alert(`
+          Ep = m * g * h
+          h = Ep / (m * g)
+          h = ${Energie_potentielle.value} / (${Masse.value} * ${Pesanteur.value})
+          h = ${h}
+          L'altitude (ou dénivelé) est de ${h} m
+          
+          (vérifiez le résulat • le résultat n'est pas arrondie)
+          `)
+          }
+        }
+      }
+    })
+  </script>
+  <script>
+    var Cinetique = document.getElementById('Cinetique');
+    var Potentielle = document.getElementById('Potentielle');
+    var submit_Form3 = document.getElementById('submit_Form3');
+    submit_Form3.addEventListener("click", () => {
+      if (Cinetique.value == "") {
+        alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+        return
+      }
+      if (Potentielle.value == "") {
+        alert("Impossible de résoudre l'équation. Vérifier les valeurs")
+        return
+      }
+      m = parseInt(Cinetique.value) + parseInt(Potentielle.value)
+      alert(`
+      Em = Ec + Ep
+      Em = ${Cinetique.value} + ${Potentielle.value}
+      Em = ${m}
+      L'énergie mécanique est de ${m} J
+
+      (vérifiez le résulat • le résultat n'est pas arrondie)
+      `)
+    })
+  </script>
+</body>
+
+</html>
